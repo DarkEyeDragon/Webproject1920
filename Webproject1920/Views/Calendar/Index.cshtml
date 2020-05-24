@@ -1,0 +1,54 @@
+﻿@model IEnumerable<webproject1920_Bruelemans_Darwyn_Tack_Joshua.ViewModels.CalendarVM>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/css/calendar/index.css")" rel="stylesheet" type="text/css" />
+}
+
+<h1>Matches</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index">
+    <div class="form-group">
+        <label for="Id" class="control-label">
+            <select name="Id" class="custom-select" id="Id" asp-items="@ViewBag.lstGames">
+                <option>Please select a club</option>
+            </select>
+        </label>
+        <input type="submit" value="Search" class="btn btn-outline-dark"/>
+    </div>
+</form>
+<div id="matches">
+    <h1>Matches</h1>
+     @{
+         if (Model != null)
+         {
+             foreach (var item in Model)
+             {
+                <div class="match shadow p-4 mb-5 bg-white rounded">
+                    <figure>
+                        <img src="@item.Game.HomeTeam.Logo" />
+                    </figure>
+                    <p class="center">@item.Game.HomeTeam.Name</p>
+                    <div class="center">
+                        <p>@item.Game.Date</p>
+                        <p class="font-weight-bold">VS</p>
+                        <p><a href="stadion?stadionId=@item.Game.HomeTeam.StadionId">@item.Game.HomeTeam.Stadion.Name</a></p>
+                        <div>@Html.ActionLink("Ticket Sale","startSale",new {ID = item.Game.Id },null)</div>
+                    </div>
+                    <p class="center">@item.Game.AwayTeam.Name</p>
+                    <figure>
+                        <img src="@item.Game.AwayTeam.Logo" />
+                    </figure>
+                </div>
+                
+             }
+         }
+     }
+</div>

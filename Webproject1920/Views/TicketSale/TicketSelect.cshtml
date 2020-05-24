@@ -1,0 +1,35 @@
+﻿@model webproject1920_Bruelemans_Darwyn_Tack_Joshua.ViewModels.GameVM
+<!--<a href="Url.Action("someaction", "somecontroller")">-->
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>kies je plaats</h1>
+<div id="matches">
+    <h1>Matches</h1>
+    @{
+        if (Model != null)
+        {
+
+            <p><a href="stadion?stadionId=@Model.HomeTeam.StadionId">@Model.HomeTeam.Stadion.Name</a></p>
+            <p>@Model.Date</p>
+            <div class="match shadow p-4 mb-5 bg-white rounded">
+                <figure>
+                    <img src="@Model.HomeTeam.Logo" />
+                </figure>
+                <p class="center">@Model.HomeTeam.Name</p>
+                <div class="center">
+
+
+
+                </div>
+                <p class="center">@Model.AwayTeam.Name</p>
+                <figure>
+                    <img src="@Model.AwayTeam.Logo" />
+                </figure>
+            </div>
+
+        }
+
+    }
+</div>
